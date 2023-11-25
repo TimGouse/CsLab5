@@ -69,9 +69,9 @@ namespace CsLab5
             // Отображаем результаты
             label3.Text = $"Исходное значение = {x}";
             label4.Text = "Точность = " + eps.ToString("0.###################");
-            label5.Text = $"Точное значение exp(x) = {exactValue}";
-            label6.Text = $"Число слагаемых = " + num.ToString("0.#######");
-            label7.Text = $"Сумма ряда exp(x) = " + sum.ToString("0.#######");
+            label5.Text = $"Точное значение exp(x) = {exactValue.ToString("F" + GetDecimalPlaces(eps))}";
+            label6.Text = $"Число слагаемых = " + num.ToString();
+            label7.Text = $"Сумма ряда exp(x) = {sum.ToString("F" + GetDecimalPlaces(eps))}";
         }
         private double GetSelectedEps()
         {
@@ -84,7 +84,16 @@ namespace CsLab5
             if (radioButton6.Checked) return 0.00001;
             return 0; // По умолчанию или в случае ошибки
         }
-
+        private int GetDecimalPlaces(double eps)
+        {
+            if (eps >= 0.1) return 1;
+            if (eps >= 0.01) return 2;
+            if (eps >= 0.001) return 3;
+            if (eps >= 0.0001) return 4;
+            if (eps >= 0.00001) return 5;
+            if (eps >= 0.000001) return 6;
+            return 0;
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
 
